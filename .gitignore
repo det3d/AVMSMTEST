@@ -2,3 +2,4 @@
 /AWS/*
 *.vscode
 /node_modules/*
+temp*
