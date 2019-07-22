@@ -1,0 +1,21 @@
+I would like to connect with
+A standalone SSH client 
+EC2 Instance Connect (browser-based SSH connection) 
+A Java SSH Client directly from my browser (Java required) 
+To access your instance:
+Open an SSH client. (find out how to connect using PuTTY)
+Locate your private key file (MongoDBInstance.pem). The wizard automatically detects the key you used to launch the instance.
+Your key must not be publicly viewable for SSH to work. Use this command if needed:
+chmod 400 MongoDBInstance.pem
+Connect to your instance using its Public DNS:
+ec2-52-89-118-79.us-west-2.compute.amazonaws.com
+Example:
+ssh -i "MongoDBInstance.pem" ec2-user@ec2-52-89-118-79.us-west-2.compute.amazonaws.com
+Please note that in most cases the username above will be correct, however please ensure that you read your AMI usage instructions to ensure that the AMI owner has not changed the default AMI username.
+If you need any assistance connecting to your instance, please see our connection documentation.
+
+
+Success
+You successfully created the users shown below. You can view and download user security credentials. You can also email users instructions for signing in to the AWS Management Console. This is the last time these credentials will be available to download. However, you can create new credentials at any time.
+
+Users with AWS Management Console access can sign-in at: https://642278422211.signin.aws.amazon.com/console

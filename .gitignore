@@ -1,0 +1,4 @@
+*.log
+/AWS/*
+*.vscode
+/node_modules/*
