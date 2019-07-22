@@ -1,3 +1,0 @@
-temp
-
-DB_CONNECTION2=mongodb+srv://test:test12345@alpineforest-r6kvg.mongodb.net/test?retryWrites=true&w=majority
