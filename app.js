@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 //connect to db
-mongoose.connect(process.env.DB_CONNECTION, {
+mongoose.connect('mongodb+srv://Caster:Caster12345@cluster0-nn20k.mongodb.net/castingdbcollection?retryWrites=true&w=majority', {
     useNewUrlParser: true
 }, () => {
     console.log('connected to db');
@@ -30,3 +30,4 @@ mongoose.connect(process.env.DB_CONNECTION, {
 //start listening to server
 app.listen(PORT);
 // process.env.PORT || 
+// process.env.DB_CONNECTION
