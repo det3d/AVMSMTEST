@@ -12,7 +12,7 @@ const PostSchema = mongoose.Schema({
   },
   temperature: {
     type: Number,
-    required: true
+    required: false
   },
   date: {
     type: Date,

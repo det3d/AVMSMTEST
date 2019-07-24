@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
+const ArrayPost = require('../models/ArrayPost');
 
 //gets back all the posts
 router.get('/', async (req, res) => {
@@ -32,6 +33,33 @@ router.post('/', async (req, res) => {
     });
   }
 });
+
+//submits array of post
+//https://stackoverflow.com/questions/31254578/iterate-over-json-array-in-node-js
+router.post('/array', async (req, res) => {
+  //console.log(req.body);
+  var tables = req.body;
+  var savedPost = [];
+  console.log(tables);
+
+  for (var i = 0; i < tables.length; i++) {
+    var cpu = tables[i].cpu;
+    var mem = tables[i].memory;
+    var temp = tables[i].temperature;
+    console.log(cpu);
+    console.log(mem);
+    const post = new Post({
+      cpu: cpu,
+      memory: mem,
+      temperature: temp
+    });
+    //try to push each tablename to db
+    savedPost.push(post);
+    post.save();
+  }
+  res.json(savedPost);
+});
+
 
 //gets post by post id
 router.get('/:postId', async (req, res) => {
