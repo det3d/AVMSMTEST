@@ -8,10 +8,10 @@ const ArrayPost = require('../models/ArrayPost');
 
 
 
-app.use(bodyParser.json());
+router.use(bodyParser.json());
 
 //gets back all the posts
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
   //res.send('we are on posts route');
   try {
     const posty = await Post.find();
@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 });
 
 //submits a post
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
   console.log(req.body);
   const post = new Post({
     cpu: req.body.cpu,
@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
 
 //submits array of post
 //https://stackoverflow.com/questions/31254578/iterate-over-json-array-in-node-js
-router.post('/array', async (req, res) => {
+router.post('/array', async (req, res, next) => {
   //console.log(req.body);
   var tables = req.body;
   var savedPost = [];
@@ -83,7 +83,7 @@ router.post('/array', async (req, res) => {
 // });
 
 //deletes post
-router.delete('/:postId', async (req, res) => {
+router.delete('/:postId', async (req, res, next) => {
   try {
     const removedPost = await Post.deleteOne({
       _id: req.params.postId
