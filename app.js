@@ -21,7 +21,7 @@ app.use(cors({
 app.use('/posts', postsRoute);
 
 //Routes
-app.get('/', async (req, res) => {
+app.get('/', async (req, res, next) => {
     res.send('we are on home url');
     //
     // try {
