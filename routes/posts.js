@@ -1,14 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const app = express();
 const Post = require('../models/Post');
 const ArrayPost = require('../models/ArrayPost');
+
+
+
+app.use(bodyParser.json());
 
 //gets back all the posts
 router.get('/', async (req, res) => {
   //res.send('we are on posts route');
   try {
     const posty = await Post.find();
+    console.log(posty);
     res.json(posty);
   } catch (err) {
     res.json({
