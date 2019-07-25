@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   //res.send('we are on posts route');
   const posty = Post.find();
   console.log(posty);
-  res.send(posty);
+  res.json(posty);
   // try {
   //   const posty = await Post.find();
   //   console.log(posty);
