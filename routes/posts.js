@@ -10,7 +10,7 @@ router.get('/', cors(), async (req, res) => {
   //res.send('we are on posts');
   try {
     const posts = await Post.find();
-    res.json(posts);
+    res.status(200).json(posts);
   } catch (err) {
     res.json({
       message: err
