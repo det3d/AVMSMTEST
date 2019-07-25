@@ -4,10 +4,9 @@ const cors = require('cors');
 const Post = require('../models/Post');
 const ArrayPost = require('../models/ArrayPost');
 
-router.use(cors());
 
 //gets back all the posts
-router.get('/', async (req, res) => {
+router.get('/', cors(), async (req, res) => {
   //res.send('we are on posts');
   try {
     const posts = await Post.find();
