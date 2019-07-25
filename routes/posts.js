@@ -4,8 +4,18 @@ const cors = require('cors');
 const Post = require('../models/Post');
 const ArrayPost = require('../models/ArrayPost');
 
-
-
+//gets back all the posts
+router.get('/', async (req, res) => {
+  try {
+    const posts = await Post.find();
+    console.log(posts);
+    res.json(posts);
+  } catch (err) {
+    res.json({
+      message: err
+    });
+  }
+});
 
 //submits a post
 router.post('/', async (req, res) => {
@@ -64,19 +74,6 @@ router.post('/array', async (req, res) => {
 //     });
 //   }
 // });
-
-//gets back all the posts
-router.get('/', async (req, res) => {
-  try {
-    const posts = await Post.find();
-    console.log(posts);
-    res.json(posts);
-  } catch (err) {
-    res.json({
-      message: err
-    });
-  }
-});
 
 //deletes post
 router.delete('/:postId', async (req, res) => {
