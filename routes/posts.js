@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const cors = require('cors');
 const Post = require('../models/Post');
 const ArrayPost = require('../models/ArrayPost');
+
+router.use(cors());
 
 //gets back all the posts
 router.get('/', async (req, res) => {

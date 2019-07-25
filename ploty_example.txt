@@ -1,0 +1,8 @@
+var url='http://localhost:9090/api/test';
+
+d3.json(url, function(error, data) {
+  if (error) return console.warn(error);
+  var layout = {barmode: 'group'};
+  
+ Plotly.newPlot('tester', data.data, layout);
+});

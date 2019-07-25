@@ -3,13 +3,16 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 //require('dotenv/config');
 require('dotenv').config();
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+    credentials: true
+}));
+
 //import routes
 const postsRoute = require('./routes/posts');
 
