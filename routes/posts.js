@@ -98,7 +98,7 @@ router.delete('/:postId', async (req, res, next) => {
 });
 
 //updates a post
-router.patch('/:postId', async (req, res) => {
+router.patch('/:postId', async (req, res, next) => {
   try {
     await Post.updateOne({
       _id: req.params.postId
