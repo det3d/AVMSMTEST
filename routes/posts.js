@@ -5,18 +5,20 @@ const Post = require('../models/Post');
 const ArrayPost = require('../models/ArrayPost');
 
 //gets back all the posts
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
   //res.send('we are on posts route');
-
-  try {
-    const posty = await Post.find();
-    console.log(posty);
-    res.send(posty);
-  } catch (err) {
-    res.json({
-      message: err
-    });
-  }
+  const posty = await Post.find();
+  console.log(posty);
+  res.send(posty);
+  // try {
+  //   const posty = await Post.find();
+  //   console.log(posty);
+  //   res.send(posty);
+  // } catch (err) {
+  //   res.json({
+  //     message: err
+  //   });
+  // }
 
 });
 
