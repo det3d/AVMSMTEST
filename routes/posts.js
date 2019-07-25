@@ -6,7 +6,7 @@ const ArrayPost = require('../models/ArrayPost');
 
 
 //gets back all the posts
-router.get('/', async (req, res) => {
+router.get('/x', async (req, res) => {
   try {
     const posts = await Post.find();
     console.log(posts);
