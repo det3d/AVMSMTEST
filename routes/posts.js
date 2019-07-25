@@ -53,24 +53,24 @@ router.post('/array', async (req, res) => {
 
 
 //gets post by post id
-router.get('/:postId', async (req, res) => {
-  //console.log(req.params.postId);
-  try {
-    const post = await Post.findById(req.params.postId);
-    res.json(post);
-  } catch (err) {
-    res.json({
-      message: err
-    });
-  }
-});
+// router.get('/:postId', async (req, res) => {
+//   //console.log(req.params.postId);
+//   try {
+//     const post = await Post.findById(req.params.postId);
+//     res.json(post);
+//   } catch (err) {
+//     res.json({
+//       message: err
+//     });
+//   }
+// });
 
 //gets back all the posts
 router.get('/', async (req, res) => {
   try {
     const posts = await Post.find();
     console.log(posts);
-    res.status(200).json(posts);
+    res.json(posts);
   } catch (err) {
     res.json({
       message: err
