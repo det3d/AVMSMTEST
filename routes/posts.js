@@ -5,18 +5,7 @@ const Post = require('../models/Post');
 const ArrayPost = require('../models/ArrayPost');
 
 
-//gets back all the posts
-router.get('/x', async (req, res) => {
-  try {
-    const posts = await Post.find();
-    console.log(posts);
-    res.status(200).json(posts);
-  } catch (err) {
-    res.json({
-      message: err
-    });
-  }
-});
+
 
 //submits a post
 router.post('/', async (req, res) => {
@@ -74,7 +63,19 @@ router.get('/:postId', async (req, res) => {
       message: err
     });
   }
+});
 
+//gets back all the posts
+router.get('/', async (req, res) => {
+  try {
+    const posts = await Post.find();
+    console.log(posts);
+    res.status(200).json(posts);
+  } catch (err) {
+    res.json({
+      message: err
+    });
+  }
 });
 
 //deletes post
