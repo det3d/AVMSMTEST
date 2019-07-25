@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const PORT = 3001;
 
-const Post = require('../models/Post');
+const Post = require('./models/Post');
 
 //require('dotenv/config');
 require('dotenv').config();
