@@ -6,21 +6,16 @@ const ArrayPost = require('../models/ArrayPost');
 
 
 //gets back all the posts
-router.get('/', cors(), async (req, res) => {
-  //res.send('we are on posts');
-  const posts = await Post.find();
-  console.log(posts);
-  res.status(200).send(posts);
-
-  // try {
-  //   const posts = await Post.find();
-  //   console.log(posts);
-  //   res.status(200).json(posts);
-  // } catch (err) {
-  //   res.json({
-  //     message: err
-  //   });
-  // }
+router.get('/', async (req, res) => {
+  try {
+    const posts = await Post.find();
+    console.log(posts);
+    res.status(200).json(posts);
+  } catch (err) {
+    res.json({
+      message: err
+    });
+  }
 });
 
 //submits a post

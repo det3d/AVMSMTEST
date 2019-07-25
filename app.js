@@ -20,9 +20,9 @@ const postsRoute = require('./routes/posts');
 app.use('/posts', postsRoute);
 
 //Routes
-app.get('/', (req, res) => {
-    res.send('we are on home url');
-});
+// app.get('/', (req, res) => {
+//     res.send('we are on home url');
+// });
 
 //connect to db
 //You don’t need “dotenv” to read the environment variables. Set the variables in your .bash_profile you should be able to see that process.env.MYAPIKEY no problem.
