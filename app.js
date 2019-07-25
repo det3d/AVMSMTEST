@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const PORT = 3001;
 
+const Post = require('../models/Post');
+
 //require('dotenv/config');
 require('dotenv').config();
 
@@ -20,9 +22,22 @@ const postsRoute = require('./routes/posts');
 app.use('/posts', postsRoute);
 
 //Routes
-app.get('/', (req, res) => {
-    res.send('we are on home url');
+app.get('/', async (req, res) => {
+    //res.send('we are on home url');
+    //
+    try {
+        const posts = await Post.find();
+        console.log(posts);
+        res.json(posts);
+    } catch (err) {
+        res.json({
+            message: err
+        });
+    }
+    //
 });
+
+
 
 //connect to db
 //You don’t need “dotenv” to read the environment variables. Set the variables in your .bash_profile you should be able to see that process.env.MYAPIKEY no problem.
