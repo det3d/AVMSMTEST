@@ -6,6 +6,8 @@ const cors = require('cors');
 const PORT = 3001;
 
 const Post = require('./models/Post');
+//import routes
+const postsRoute = require('./routes/posts');
 
 //require('dotenv/config');
 require('dotenv').config();
@@ -15,25 +17,22 @@ app.use(cors({
     credentials: true
 }));
 
-//import routes
-const postsRoute = require('./routes/posts');
-
 //middleware
 app.use('/posts', postsRoute);
 
 //Routes
 app.get('/', async (req, res) => {
-    //res.send('we are on home url');
+    res.send('we are on home url');
     //
-    try {
-        const posts = await Post.find();
-        console.log(posts);
-        res.json(posts);
-    } catch (err) {
-        res.json({
-            message: err
-        });
-    }
+    // try {
+    //     const posts = await Post.find();
+    //     console.log(posts);
+    //     res.json(posts);
+    // } catch (err) {
+    //     res.json({
+    //         message: err
+    //     });
+    // }
     //
 });
 
