@@ -9,12 +9,12 @@ const ArrayPost = require('../models/ArrayPost');
 router.use(bodyParser.json());
 
 //gets back all the posts
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   //res.send('we are on posts route');
   try {
-    var posty = Post.find();
+    const posty = await Post.find();
     console.log(posty);
-    res.json(posty);
+    res.send(posty);
   } catch (err) {
     res.json({
       message: err
@@ -25,16 +25,16 @@ router.get('/', (req, res) => {
 //submits a post
 router.post('/', async (req, res) => {
   console.log(req.body);
-  var post = new Post({
+  const post = new Post({
     cpu: req.body.cpu,
     memory: req.body.memory,
     temperature: req.body.temperature
   });
   try {
-    var savedPost = await post.save();
+    const savedPost = await post.save();
     res.json(savedPost);
   } catch (err) {
-    res.json({
+    res.send({
       message: err
     });
   }
@@ -63,7 +63,7 @@ router.post('/array', async (req, res) => {
     savedPost.push(post);
     post.save();
   }
-  res.json(savedPost);
+  res.send(savedPost);
 });
 
 
@@ -83,7 +83,7 @@ router.post('/array', async (req, res) => {
 //deletes post
 router.delete('/:postId', async (req, res) => {
   try {
-    var removedPost = await Post.deleteOne({
+    const removedPost = await Post.deleteOne({
       _id: req.params.postId
     });
     res.json(removedPost);
