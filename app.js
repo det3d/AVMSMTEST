@@ -36,7 +36,7 @@ app.get('/', async (req, res) => {
 
 //connect to db
 //You don’t need “dotenv” to read the environment variables. Set the variables in your .bash_profile you should be able to see that process.env.MYAPIKEY no problem.
-mongoose.connect('mongodb+srv://Caster:Caster12345@cluster0-nn20k.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://Caster:Caster12345@cluster0-nn20k.mongodb.net/AVMSM?retryWrites=true&w=majority', {
     useNewUrlParser: true
 }, () => {
     console.log('connected to db');
