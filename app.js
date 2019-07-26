@@ -21,7 +21,7 @@ app.use(cors({
 app.use('/posts', postsRoute);
 
 //Routes
-app.get('/', async (req, res, next) => {
+app.get('/', async (req, res) => {
     res.send('we are on home url');
     //
     // try {
@@ -38,7 +38,7 @@ app.get('/', async (req, res, next) => {
 
 //connect to db
 //You don’t need “dotenv” to read the environment variables. Set the variables in your .bash_profile you should be able to see that process.env.MYAPIKEY no problem.
-mongoose.connect(process.env.DB_CONNECTION, {
+mongoose.connect('mongodb+srv://Caster:Caster12345@cluster0-nn20k.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true
 }, () => {
     console.log('connected to db');
