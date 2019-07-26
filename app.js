@@ -13,9 +13,7 @@ const postsRoute = require('./routes/posts');
 require('dotenv').config();
 
 app.use(bodyParser.json());
-app.use(cors({
-    credentials: true
-}));
+app.use(cors());
 
 //middleware
 app.use('/posts', postsRoute);
