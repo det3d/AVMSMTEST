@@ -15,11 +15,13 @@ router.get('/', async (req, res) => {
     const posty = await Post.find();
     console.log(posty);
     res.send(posty);
+    console.log('sent');
   } catch (err) {
     res.json({
       message: err
     });
   }
+  console.log('out of GET try');
 });
 
 //submits a post
