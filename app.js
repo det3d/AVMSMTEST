@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const PORT = 3001;
+const PORT = 3003;
 
 const Post = require('./models/Post');
 //import routes
@@ -36,7 +36,7 @@ app.get('/', async (req, res) => {
 
 //connect to db
 //You don’t need “dotenv” to read the environment variables. Set the variables in your .bash_profile you should be able to see that process.env.MYAPIKEY no problem.
-mongoose.connect('mongodb+srv://Caster:Caster12345@cluster0-nn20k.mongodb.net/AVMSM?retryWrites=true&w=majority', {
+mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true
 }, () => {
     console.log('connected to db');

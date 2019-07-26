@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
   try {
     const posty = await Post.find();
     console.log(posty);
-    res.send(posty);
+    res.json(posty);
     console.log('sent');
   } catch (err) {
     res.json({
@@ -65,7 +65,7 @@ router.post('/array', async (req, res) => {
     savedPost.push(post);
     post.save();
   }
-  res.send(savedPost);
+  res.json(savedPost);
 });
 
 
