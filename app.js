@@ -22,7 +22,7 @@ app.use('/posts', postsRoute);
 app.get('/', async (req, res) => {
     res.send('we are on home url');
     //
-    // try {
+    // try {DB
     //     const posts = await Post.find();
     //     console.log(posts);
     //     res.json(posts);
