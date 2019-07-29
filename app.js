@@ -33,6 +33,13 @@ app.get('/', async (req, res) => {
     // }
     //
 });
+app.get('/chart-cpu', async (req, res) => {
+    res.sendFile('./chart-cpu.html', {
+        root: __dirname
+    })
+
+});
+//res.sendFile('views/test.html', {root: __dirname })
 
 //connect to db
 //https://hackernoon.com/deploying-a-node-app-on-amazon-ec2-d2fb9a6757eb
