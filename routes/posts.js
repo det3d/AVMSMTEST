@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const cors = require('cors');
+//const cors = require('cors');
 const bodyParser = require('body-parser');
-const app = express();
-const Post = require('../models/Post');
-const ArrayPost = require('../models/ArrayPost');
+//const app = express();
+const Post = require('../models/Diagnostics');
+//const ArrayPost = require('../models/ArrayPost');
 
 router.use(bodyParser.json());
 
@@ -21,16 +21,22 @@ router.get('/', async (req, res) => {
       message: err
     });
   }
-  console.log('out of GET try');
+  console.log('GET Schema called');
+  //console.log('out of GET try');
 });
 
 //submits a post
 router.post('/', async (req, res) => {
   console.log(req.body);
   const post = new Post({
-    cpu: req.body.cpu,
-    memory: req.body.memory,
-    temperature: req.body.temperature
+    homescreen1cpu: req.body.homescreen1cpu,
+    homescreen1memory: req.body.homescreen1memory,
+    homescreen2cpu: req.body.homescreen2cpu,
+    homescreen2memory: req.body.homescreen2memory,
+    castingappcpu: req.body.homescreen2cpu,
+    castingappmemory: req.body.homescreen2memory,
+    btservicecpu: req.body.btservicecpu,
+    btservicememory: req.body.btservicememory
   });
   try {
     const savedPost = await post.save();
@@ -51,36 +57,25 @@ router.post('/array', async (req, res) => {
   console.log(tables);
 
   for (var i = 0; i < tables.length; i++) {
-    var cpu = tables[i].cpu;
-    var mem = tables[i].memory;
-    var temp = tables[i].temperature;
-    console.log(cpu);
-    console.log(mem);
-    const post = new Post({
-      cpu: cpu,
-      memory: mem,
-      temperature: temp
-    });
+    // var cpu = tables[i].cpu;
+    // var mem = tables[i].memory;
+    // var temp = tables[i].temperature;
+
+    //console.log(cpu);
+    //console.log(mem);
+    // const post = new Post({
+    //   cpu: cpu,
+    //   memory: mem,
+    //   temperature: temp
+    // });
+
     //try to push each tablename to db
-    savedPost.push(post);
-    post.save();
+    // savedPost.push(post);
+    // post.save();
   }
   res.json(savedPost);
 });
 
-
-//gets post by post id
-// router.get('/:postId', async (req, res) => {
-//   //console.log(req.params.postId);
-//   try {
-//     const post = await Post.findById(req.params.postId);
-//     res.json(post);
-//   } catch (err) {
-//     res.json({
-//       message: err
-//     });
-//   }
-// });
 
 //deletes post
 router.delete('/:postId', async (req, res) => {
@@ -98,23 +93,23 @@ router.delete('/:postId', async (req, res) => {
 });
 
 //updates a post
-router.patch('/:postId', async (req, res) => {
-  try {
-    await Post.updateOne({
-      _id: req.params.postId
-    }, {
-      $set: {
-        cpu: req.body.cpu,
-        memory: req.body.memory,
-        temperature: req.body.temperature
-      }
-    });
-    res.json(updatedPost);
-  } catch (err) {
-    res.json({
-      message: err
-    });
-  }
-});
+// router.patch('/:postId', async (req, res) => {
+//   try {
+//     await Post.updateOne({
+//       _id: req.params.postId
+//     }, {
+//       $set: {
+//         cpu: req.body.cpu,
+//         memory: req.body.memory,
+//         temperature: req.body.temperature
+//       }
+//     });
+//     res.json(updatedPost);
+//   } catch (err) {
+//     res.json({
+//       message: err
+//     });
+//   }
+// });
 
 module.exports = router;

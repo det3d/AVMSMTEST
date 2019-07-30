@@ -34,7 +34,7 @@ app.get('/', async (req, res) => {
     //
 });
 app.get('/chart-cpu', async (req, res) => {
-    res.sendFile('./chart-cpu.html', {
+    res.sendFile('/chart-cpu.html', {
         root: __dirname
     })
 
