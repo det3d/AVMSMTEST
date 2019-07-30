@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
-//const cors = require('cors');
 const bodyParser = require('body-parser');
-//const app = express();
 const Post = require('../models/Diagnostics');
-//const ArrayPost = require('../models/ArrayPost');
 
 router.use(bodyParser.json());
 
@@ -29,14 +26,10 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   console.log(req.body);
   const post = new Post({
-    homescreen1cpu: req.body.homescreen1cpu,
-    homescreen1memory: req.body.homescreen1memory,
-    homescreen2cpu: req.body.homescreen2cpu,
-    homescreen2memory: req.body.homescreen2memory,
-    castingappcpu: req.body.homescreen2cpu,
-    castingappmemory: req.body.homescreen2memory,
-    btservicecpu: req.body.btservicecpu,
-    btservicememory: req.body.btservicememory
+    homescreen1: [req.body.homescreen1, req.body.homescreen1],
+    homescreen2: [req.body.homescreen2, req.body.homescreen2],
+    castingapp: [req.body.castingapp, req.body.castingapp],
+    btservice: [req.body.btservice, req.body.btservice]
   });
   try {
     const savedPost = await post.save();
