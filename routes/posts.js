@@ -24,12 +24,24 @@ router.get('/', async (req, res) => {
 
 //submits a post
 router.post('/', async (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   const post = new Post({
-    homescreen1: [req.body.homescreen1, req.body.homescreen1],
-    homescreen2: [req.body.homescreen2, req.body.homescreen2],
-    castingapp: [req.body.castingapp, req.body.castingapp],
-    btservice: [req.body.btservice, req.body.btservice]
+    homescreen1: {
+      cpu: req.body.homescreen1.cpu,
+      memory: req.body.homescreen1.memory
+    },
+    homescreen2: {
+      cpu: req.body.homescreen2.cpu,
+      memory: req.body.homescreen2.memory
+    },
+    castingapp: {
+      cpu: req.body.castingapp.cpu,
+      memory: req.body.castingapp.memory
+    },
+    btservice: {
+      cpu: req.body.btservice.cpu,
+      memory: req.body.btservice.memory
+    }
   });
   try {
     const savedPost = await post.save();
