@@ -10,7 +10,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	theme: "light2",
 	title: {
-		text: "CPU % Used on Board"
+		text: "CPU % Used"
 	},
 	axisY: {
 		title: "Units",
@@ -18,24 +18,30 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	data: [{
 		type: "column",
-		yValueFormatString: "#,### Units",
+		yValueFormatString: "### Units",
 		dataPoints: dataPoints
 	}]
 });
-
-function addData(data) {
-	for (var i = 0; i < data.length; i++) {
+chart.render();
+function addData(datas) {
+	for (var i = 0; i < datas.length; i++) {
 		
+		var cpuNumbers = (datas[i].data[0].split(':')[1]);
+		var dateNumbers = (datas[i].date);
+		
+		console.log(cpuNumbers);
+		console.log(dateNumbers);
+
 		dataPoints.push({
-			x: new Date(data[i].date),
-			y: data[i].cpu
+			x: dateNumbers,
+			y: cpuNumbers
 		});
 	}
-	chart.render();
+	
 }
 
-$.getJSON("http://34.219.19.47:3004/posts", addData);
-
+$.getJSON("http://localhost:3004/posts", addData);
+//http://34.219.19.47
 }
 </script>
 </head>

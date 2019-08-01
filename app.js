@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const PORT = 3004;
 
-const Post = require('./models/Post');
+//const Post = require('./models/Post');
 //import routes
 const postsRoute = require('./routes/posts');
 
@@ -40,6 +40,13 @@ app.get('/chart-cpu', async (req, res) => {
 
 });
 //res.sendFile('views/test.html', {root: __dirname })
+
+app.get('/chart', async (req, res) => {
+    res.sendFile('/chart/index.html', {
+        root: __dirname
+    })
+
+});
 
 //connect to db
 //https://hackernoon.com/deploying-a-node-app-on-amazon-ec2-d2fb9a6757eb

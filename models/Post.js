@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 //schema - describe how you data is/looks
 const PostSchema = mongoose.Schema({
-  cpu: {
-    type: Number,
+  name: {
+    type: String,
     required: true
   },
-  memory: {
+  things: {
     type: Number,
     required: true
   },

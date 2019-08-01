@@ -10,41 +10,28 @@ router.get('/', async (req, res) => {
   //res.send('we are on posts route');
   try {
     const posty = await Post.find();
-    console.log(posty);
+    //console.log('GET: ' + posty);
     res.json(posty);
-    console.log('sent');
   } catch (err) {
     res.json({
       message: err
     });
   }
-  console.log('GET Schema called');
-  //console.log('out of GET try');
+  console.log('...after GET Schema called...');
 });
 
 //submits a post
 router.post('/', async (req, res) => {
-  //console.log(req.body);
   const post = new Post({
-    homescreen1: {
-      cpu: req.body.homescreen1.cpu,
-      memory: req.body.homescreen1.memory
-    },
-    homescreen2: {
-      cpu: req.body.homescreen2.cpu,
-      memory: req.body.homescreen2.memory
-    },
-    castingapp: {
-      cpu: req.body.castingapp.cpu,
-      memory: req.body.castingapp.memory
-    },
-    btservice: {
-      cpu: req.body.btservice.cpu,
-      memory: req.body.btservice.memory
-    }
+    name: req.body.name,
+    data: req.body.data,
+    date: req.body.date
   });
+  //console.log(things);
+
   try {
     const savedPost = await post.save();
+    //res.type('json');
     res.json(savedPost);
   } catch (err) {
     res.send({
@@ -56,27 +43,26 @@ router.post('/', async (req, res) => {
 //submits array of post
 //https://stackoverflow.com/questions/31254578/iterate-over-json-array-in-node-js
 router.post('/array', async (req, res) => {
-  //console.log(req.body);
+  console.log(req.body);
   var tables = req.body;
   var savedPost = [];
   console.log(tables);
 
   for (var i = 0; i < tables.length; i++) {
-    // var cpu = tables[i].cpu;
-    // var mem = tables[i].memory;
-    // var temp = tables[i].temperature;
 
-    //console.log(cpu);
-    //console.log(mem);
-    // const post = new Post({
-    //   cpu: cpu,
-    //   memory: mem,
-    //   temperature: temp
-    // });
+    var name1 = tables[i].name;
+    var data1 = tables[i].data;
+    var date1 = tables[i].date;
+
+    const post = new Post({
+      name: name1,
+      data: data1,
+      date: date1
+    });
 
     //try to push each tablename to db
-    // savedPost.push(post);
-    // post.save();
+    savedPost.push(post);
+    post.save();
   }
   res.json(savedPost);
 });
@@ -118,3 +104,8 @@ router.delete('/:postId', async (req, res) => {
 // });
 
 module.exports = router;
+
+// request.body.forEach(function(obj) {
+//   var transfer = new Transfer(obj);
+//   transfer.save();
+// });

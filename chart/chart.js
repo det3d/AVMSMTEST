@@ -11,23 +11,28 @@ var chart = new CanvasJS.Chart("chartContainer", {
     }]
 });
 
-$.getJSON("http://34.219.19.47:3004/posts", function (chartData) {
+$.getJSON("http://localhost:3004/posts", function (chartData) {
 
     var tempArr = [];
+
     for (var i = 0; i < chartData.length; i++) {
 
-        tempArr.push(chartData[i]);
+        var cpuInfo = chartData[i].data[i].split("cpu: ");
+        //console.log(cpuInfo);
+        //needs work below
 
-        var test = (tempArr[i].date);
-        console.log(test);
+        //tempArr.push(chartData[i].data[i].split);
 
-        var timeStamp = tempArr[i].date;
+        //var test = (tempArr[i].date);
+        //console.log(test);
 
-        var timeZone = tempArr[i].date;
+        console.log(chartData[i].date);
+        var timeStamp = (chartData[i].date).toString().match(/\.*[0-9]+/);
+        var timeZone = (chartData[i].date).toString().match(/\.*-[0-9]+/);
 
         dps.push({
-            x: new Date(parseInt(timeStamp[0]) + parseInt(timeZone[0])),
-            y: parseFloat(tempArr[i].timeStamp)
+            x: new Date(parseInt(timeStamp) + parseInt(timeZone)),
+            y: parseFloat(cpuInfo)
         });
     }
     chart.render();
