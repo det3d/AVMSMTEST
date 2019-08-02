@@ -4,9 +4,7 @@ const mongoose = require('mongoose');
 const DiagnosticsSchema = mongoose.Schema({
     name: String,
     data: String,
-    date: {
-        type: Date
-    }
+    date: String
 });
 
 module.exports = mongoose.model('Diagnostics', DiagnosticsSchema);
