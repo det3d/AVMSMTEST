@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 //schema - describe how you data is/looks
 const DiagnosticsSchema = mongoose.Schema({
     name: String,
-    data: [],
+    data: String,
     date: {
         type: Date
     }
