@@ -54,7 +54,7 @@ router.post('/array', async (req, res) => {
     var data1 = tables[i].data;
     var date1 = tables[i].date;
 
-    const post = new Post({
+    const post = await new Post({
       name: name1,
       data: data1,
       date: date1
