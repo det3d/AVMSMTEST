@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- Plotly.js -->
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
+</head>
+<body>
+    <h2 style="text-align: center">
+        8155 CPU Total 
+    </h2>
+    <br />
+
+    <!-- Plots go in blank <div> elements. 
+        You can size them in the plot layout,
+        or give the div a size as shown here.
+    -->
+    <div id="cputester" style="width:90%;height:250px;"></div>
+    <br />
+    <h2 style="text-align: center">
+            8155 Memory Used 
+        </h2>
+        <br />
+    
+        <!-- Plots go in blank <div> elements. 
+            You can size them in the plot layout,
+            or give the div a size as shown here.
+        -->
+        <div id="memtester" style="width:90%;height:250px;"></div>
+    <script>
+        xDataCPU = [];
+        yDataCPU = [];
+        xDataMemDate = [];
+        yDataMemUsed = [];
+
+        apiGetAll();
+        function apiGetAll(){
+            try {
+                console.log('in apiGetAll()');
+                fetch('http://34.219.19.47:3004/posts')
+                .then(response => {
+                    response.json().then(function(data) {
+                        let yo = data;
+                        console.log(data);
+                        xDataCPU = yo.map(item => { 
+                            //return parseInt(item.data[0].split(': ')[1]);
+                            console.log(item.date);
+                            holdDate = (new Date(item.date));                          
+                            return holdDate;
+                        });
+                       yDataCPU = yo.map(item => { 
+                            //return parseInt(item.data[0].split(': ')[1]);
+                            
+                            console.log('yDataCPU'+ yDataMemUsed);
+                            return item.data[0].cpu;
+
+                        });
+                        xDataMemDate = yo.map(item => { 
+                            //return parseInt(item.data[0].split(': ')[1]);
+                            console.log(item.date);
+                            holdDate = (new Date(item.date));                          
+                            return holdDate;
+                        });   
+                        yDataMemUsed = yo.map(item => { 
+                            //return parseInt(item.data[0].split(': ')[1]);
+                            console.log('yDataMemUsed'+ yDataMemUsed);
+                            return item.data[0].used_memory;
+
+                        }); 
+
+                        drawPlotly_cpuUsed();
+                        drawPlotly_memUsed();
+                    });
+                });
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        function populateGraph()
+        {
+            // $("#somediv").text(holdStuff2);
+            //console.log('in poplulatGraph with holdStuff2: ' + holdStuff2);
+            
+            //addData(massPopChart, holdStuff, holdStuff2);
+            return false;
+            //massPopChart.data.datasets = holdStuff2;
+        }
+
+    cputester = document.getElementById('cputester');
+    memtester = document.getElementById('memtester');
+    
+    function drawPlotly_cpuUsed(){
+        Plotly.plot( cputester, [{
+        x: xDataCPU,
+        y: yDataCPU }], { 
+        margin: { t: 15 } } );
+    }
+    function drawPlotly_memUsed(){
+        Plotly.plot( memtester, [{
+        x: xDataMemDate,
+        y: yDataMemUsed }], { 
+        margin: { t: 15 } } );
+    }
+
+    /* Current Plotly.js version */
+    console.log( Plotly.BUILD );
+</script>
+</body>
+</html>
